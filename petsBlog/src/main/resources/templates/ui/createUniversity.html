@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+<div th:replace="/fragments/header :: header"></div>
+
+<h1>Create University</h1>
+
+<form th:action="@{/ui/universities/new}" th:object="${university}" method="post">
+  <div class="form-group">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" th:field="*{name}" required>
+  </div>
+  <div class="form-group">
+    <label for="street">Street:</label>
+    <input type="text" id="street" name="street" th:field="*{address.street}" required>
+  </div>
+  <div class="form-group">
+    <label for="city">City:</label>
+    <input type="text" id="city" name="city" th:field="*{address.city}" required>
+  </div>
+  <div class="form-group">
+    <label for="state">Country:</label>
+    <input type="text" id="state" name="state" th:field="*{address.state}" required>
+  </div>
+  <div class="form-group">
+    <label for="zipCode">Zip Code:</label>
+    <input type="text" id="zipCode" name="zipCode" th:field="*{address.zipCode}" required>
+  </div>
+  <button type="submit">Create University</button>
+</form>
+
+<div th:replace="/fragments/footer :: footer"></div>
+
+</body>
+</html>

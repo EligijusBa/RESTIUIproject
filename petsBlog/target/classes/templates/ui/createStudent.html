@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<style>
+  body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-image: url("https://d36tnp772eyphs.cloudfront.net/blogs/1/2020/09/The-Peabody-Library-building.jpg");
+      background-size: cover;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #fff;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    header a {
+      margin-left: 10px;
+      padding: 8px 16px;
+      background-color: #fff;
+      color: #333;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+    }
+
+    header a:hover {
+      background-color: #f2f2f2;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #fff;
+    }
+
+    table th, table td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    table th {
+      background-color: #f2f2f2;
+      font-weight: bold;
+    }
+
+    table tbody tr:hover {
+      background-color: #f5f5f5;
+    }
+
+    .create-button {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .loggedin-user {
+      text-align: right;
+    }
+</style>
+<body>
+
+<div th:replace="/fragments/header :: header"></div>
+
+<h1>Create Student</h1>
+
+<form th:action="@{/ui/students/new}" th:object="${student}" method="post">
+  <div class="form-group">
+    <label for="name">Name:</label>
+    <input type="text" class="form-control" id="name" th:field="*{name}" required>
+  </div>
+  <div class="form-group">
+    <label for="surname">Surname:</label>
+    <input type="text" class="form-control" id="surname" th:field="*{surname}" required>
+  </div>
+  <div class="form-group">
+    <label for="age">Age:</label>
+    <input type="number" class="form-control" id="age" th:field="*{age}" required>
+  </div>
+  <div class="form-group">
+    <label for="subject">Subject:</label>
+    <input type="text" class="form-control" id="subject" th:field="*{subject}" required>
+  </div>
+  <div class="form-group">
+    <label for="university">University:</label>
+    <select class="form-control" id="university" th:field="*{university.id}" required>
+      <option th:each="university : ${universities}" th:value="${university.id}" th:text="${university.name}"></option>
+    </select>
+  </div>
+  <button type="submit" class="btn btn-primary">Create Student</button>
+</form>
+
+<div th:replace="/fragments/footer :: footer"></div>
+
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Student List</title>
+    <style>
+    /* CSS styles for the table */
+    body {
+        background-image: url("https://d36tnp772eyphs.cloudfront.net/blogs/1/2020/09/The-Peabody-Library-building.jpg");
+        background-size: cover;
+    }
+table {
+  border-collapse: collapse;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.9);
+  margin: 50px auto;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  background-color: transparent;
+  font-weight: bold;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+    .action-buttons {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .action-buttons a {
+      margin-right: 10px;
+    }
+    .filter-input {
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin-bottom: 5px;
+        width: 200px;
+    }
+header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    header a {
+      margin-left: 10px;
+      padding: 8px 16px;
+      background-color: #fff;
+      color: #333;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+    }
+
+    header a:hover {
+      background-color: #f2f2f2;
+    }
+
+
+    </style>
+</head>
+<body>
+<div th:replace="/fragments/header :: header"></div>
+<h1 style="color: white; text-align: center;">Student List</h1>
+<input type="text" class="filter-input" id="filterInput" placeholder="Filter by university"/>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Subject</th>
+        <th>University</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Iterate over the list of students and display their information -->
+    <tr th:each="student : ${students}" class="student-row">
+        <td>
+            <span th:if="${student.name != null}" th:text="${student.name}"></span>
+            <span th:unless="${student.name != null}">N/A</span>
+        </td>
+        <td>
+            <span th:if="${student.surname != null}" th:text="${student.surname}"></span>
+            <span th:unless="${student.surname != null}">N/A</span>
+        </td>
+        <td>
+            <span th:if="${student.age != null}" th:text="${student.age}"></span>
+            <span th:unless="${student.age != null}">N/A</span>
+        </td>
+        <td>
+            <span th:if="${student.subject != null}" th:text="${student.subject}"></span>
+            <span th:unless="${student.subject != null}">N/A</span>
+        </td>
+        <td>
+            <span th:if="${student.university != null}" th:text="${student.university.name}"></span>
+            <span th:unless="${student.university != null}">N/A</span>
+        </td>
+        <td class="action-buttons">
+            <a sec:authorize="isAuthenticated()">
+                <a th:href="@{'/ui/students/' + ${student.id}}">View</a>
+            </a>
+            <a sec:authorize="hasAnyRole('ROLE_ADMIN')">
+                <form th:action="@{/ui/students/delete/{id}(id=${student.id})}" method="post">
+                    <button type="submit">Delete</button>
+                </form>
+            </a>
+        </td>
+
+    </tr>
+    </tbody>
+    <div sec:authorize="isAuthenticated()" style="text-align: center;">
+        <a th:href="@{/ui/students/new}" style="display: inline-block; padding: 10px 20px; background-color: #4CAF50; color: white; text-decoration: none; border-radius: 4px;">Add new student</a>
+    </div>
+</table>
+<script>
+    // Get the filter input element
+    var filterInput = document.getElementById('filterInput');
+
+    // Add event listener to the filter input field
+    filterInput.addEventListener('input', function () {
+        var filterValue = this.value.toLowerCase();
+        var studentRows = document.getElementsByClassName('student-row');
+
+        // Iterate over the student rows and show/hide based on the filter value
+        for (var i = 0; i < studentRows.length; i++) {
+            var universityName = studentRows[i].querySelector('td:nth-child(5)').textContent.toLowerCase();
+
+            if (universityName.includes(filterValue)) {
+                studentRows[i].style.display = '';
+            } else {
+                studentRows[i].style.display = 'none';
+            }
+        }
+    });
+</script>
+</body>
+</html>

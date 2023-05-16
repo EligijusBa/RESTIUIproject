@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <title>About Us</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+  <style>
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+
+<body>
+<div th:replace="/fragments/header :: header"></div>
+<div class="container">
+  <h1>About Us</h1>
+  <p>Welcome to our University Student Management System project! We are a team of dedicated developers who have designed and built this system with the goal of simplifying student management in universities.</p>
+  <p>Our system provides a comprehensive solution for administrators, professors, and students to manage various aspects of student information, course enrollment, and university data. With user authentication and role-based access control, the system ensures secure access and appropriate permissions for different user roles.</p>
+  <p>We have designed an intuitive user interface that makes it easy to navigate through the system and perform tasks efficiently. The system allows administrators to manage student and university data, while professors can handle course assignments and grades. Students can access their profiles, enroll in courses, and view their academic progress.</p>
+  <p>We believe that our University Student Management System will greatly benefit educational institutions by streamlining administrative processes, improving data accuracy, and enhancing communication between stakeholders. We are committed to continuous improvement and welcome feedback to make the system even better.</p>
+  <p>Thank you for choosing our University Student Management System!</p>
+</div>
+</body>
+
+</html>

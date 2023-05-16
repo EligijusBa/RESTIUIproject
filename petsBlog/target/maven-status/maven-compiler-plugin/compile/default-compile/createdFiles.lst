@@ -1,0 +1,13 @@
+com\balukonis\app\universitymicroserviceUI\repository\UserRepository.class
+com\balukonis\app\universitymicroserviceUI\model\User.class
+com\balukonis\app\universitymicroserviceUI\service\IUserService.class
+com\balukonis\app\universitymicroserviceUI\model\UniversityAddress.class
+com\balukonis\app\universitymicroserviceUI\controller\UserController.class
+com\balukonis\app\universitymicroserviceUI\model\Students.class
+com\balukonis\app\universitymicroserviceUI\universitymicroserviceUIApplication.class
+com\balukonis\app\universitymicroserviceUI\controller\HomeController.class
+com\balukonis\app\universitymicroserviceUI\model\Student.class
+com\balukonis\app\universitymicroserviceUI\model\University.class
+com\balukonis\app\universitymicroserviceUI\controller\RestUIController$1.class
+com\balukonis\app\universitymicroserviceUI\service\UserService.class
+com\balukonis\app\universitymicroserviceUI\controller\RestUIController.class
