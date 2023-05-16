@@ -3,7 +3,7 @@ Clone the application
 
 
 ```bash
-git clone https://github.com/coma123/Spring-Boot-Blog-REST-API.git](https://github.com/EligijusBa/RESTIUIproject.git)
+git clone https://github.com/coma123/Spring-Boot-Blog-REST-API.git
 ```
 
 ## Create Mysql database
